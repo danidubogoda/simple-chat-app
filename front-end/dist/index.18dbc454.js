@@ -622,7 +622,8 @@ btnSendElm.addEventListener("click", ()=>{
     const message = txtMsgElm.value.trim();
     if (!message) return;
     const msgObj = {
-        message
+        message,
+        email: user.email
     };
     addChatMessageRecord(msgObj);
     txtMsgElm.value = "";

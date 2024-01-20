@@ -57,6 +57,7 @@ if(!message) return;
 
 const msgObj = {
     message,
+    email: user.email
 };
 
 addChatMessageRecord(msgObj);
