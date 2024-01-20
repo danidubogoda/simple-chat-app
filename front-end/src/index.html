@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat App</title>
+    <script type="module" src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script type="module" src="js/main.js"></script>
+</head>
+
+<body>
+    <header id="head" class="d-flex justify-content-between align-items-center border-bottom border-black border-3">
+        <div class="mt-3 mx-3 mb-3  d-flex justify-content-start align-items-center">
+            <img id="logo" src="img/01.png" alt="logo">
+            <h1 class="ms-3 text-white">Chat App</h1>
+        </div>
+
+        <div id="account">
+            <div id="account-details" class="d-none">
+                <div id="user-name">Name</div>
+                <div id="user-email">Email</div>
+                <div id="btn-sign-out">Sign out</div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+
+        <div id="output-wrapper" class="border flex-grow-1 gap-2 p-2">
+            <div id="output" class="p-2 h-100"></div>
+        </div>
+
+        <form action="javascript:void(0)" class="d-flex gap-2 p-2">
+            <input type="text" class="form-control" id="txt-message" placeholder="Drop Message Here">
+            <button id="btn-send" type="submit" class="btn btn-success">ADD</button>
+        </form>
+        
+    </main>
+
+    <div id="login-overlay" class="vw-100 vh-100 d-flex align-items-center justify-content-center">
+        <div class="text-center">
+            <img src="img/01.png" alt="logo" id="main-logo" class="mb-3">
+            <h2 class="text-white">Welcome to Chat App</h2>
+            <h2 class="mb-4 mt-2 text-white">Sign In</h2>
+            <button id="btn-sign-in" class="btn btn-primary">Sign In With Google</button>
+        </div>
+    </div>
+   
+    
+</body>
+</html>

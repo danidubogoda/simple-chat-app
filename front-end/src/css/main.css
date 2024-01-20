@@ -1,0 +1,84 @@
+* {
+    box-sizing: border-box;
+    font-family: Ubuntu, system-ui, 'sans-serif';
+}
+
+#main-logo{
+    width: 100px;
+    height: 100px;
+}
+
+
+#logo{
+    width: 60px;
+    height: 60px;
+}
+
+#head{
+    background-color: rgb(38, 119, 81);
+}
+
+#account{
+    width: 60px;;
+    height: 60px;
+     align-self: center;
+     border-radius: 50%;
+     background-size: contain;
+     cursor: pointer;
+     margin-right: 10px;
+}
+
+#account-details{
+    position: absolute;
+    width: 200px;
+    height: 106px;
+    right: 0;
+    top: calc(12%);
+    border: 1px solid black;
+    background-color:rgb(54, 179, 120);
+    border-radius: 10px;
+    text-align: right;
+    margin-right: 20px;
+    z-index: 9999;
+}
+
+#user-name{
+    padding: 10px 10px 0;
+}
+#user-email{
+    color: rgb(73, 73, 73);
+    font-size: 0.8rem;
+    padding-right: 10px;
+    margin-bottom: 5px;
+}
+
+#btn-sign-out{
+    text-align: center;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgb(50, 114, 187);
+}
+
+#btn-sign-out:hover{
+    background-color: rgb(20, 89, 146);
+}
+
+
+#login-overlay{
+    background-color: black;
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+
+
+.message{
+    width: fit-content;
+    background-color: rgb(60, 24, 107);
+    color: white;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    position: relative;
+}
