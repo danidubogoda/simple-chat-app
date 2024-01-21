@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lk.ijse.dep11.app.wsController.ChatWSController;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;
 import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
@@ -14,6 +15,7 @@ import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry
 public class WebSocketConfig implements WebSocketConfigurer {
 
     @Bean
+    @Primary
     public LocalValidatorFactoryBean localValidatorFactoryBean(){
         return new LocalValidatorFactoryBean();
     }
@@ -31,6 +33,6 @@ public class WebSocketConfig implements WebSocketConfigurer {
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
         System.out.println("registerWebSocketHandlers()");
-        registry.addHandler(chatWSController(), "/api/v1/messages").setAllowedOriginPatterns("*");
+        registry.addHandler(chatWSController(), "/api/v3/messages").setAllowedOriginPatterns("*");
     }
 }

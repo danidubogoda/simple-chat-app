@@ -73,13 +73,23 @@
 
 .message {
   color: #fff;
-  background-color: #5813b3;
+  background-color: #c5882e;
   border-radius: 10px;
   width: -moz-fit-content;
   width: fit-content;
   margin-bottom: 10px;
   padding: 5px 10px;
   position: relative;
+}
+
+.message.me {
+  background-color: #2b924d;
+  align-self: flex-end;
+}
+
+.message.others {
+  background-color: #5813b3;
+  align-self: flex-end;
 }
 
 /*# sourceMappingURL=index.34df27b5.css.map */

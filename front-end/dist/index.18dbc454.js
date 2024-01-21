@@ -591,6 +591,7 @@ const accountElm = document.querySelector("#account");
 const userNameElm = document.querySelector("#user-name");
 const userEmailElm = document.querySelector("#user-email");
 const overlayElm = document.querySelector("#login-overlay");
+const API_BASE_URL;
 const user = {
     email: null,
     name: null,
@@ -603,20 +604,50 @@ btnSignInElm.addEventListener("click", ()=>{
         user.email = res.user.email;
         user.picture = res.user.photoURL;
         overlayElm.classList.add("d-none");
-        finalizedLoginDetails();
+        finalizedLogin();
     }).catch((err)=>alert("Failed to Sign In"));
 });
-function finalizedLoginDetails() {
+function finalizedLogin() {
     userNameElm.innerText = user.name;
     userEmailElm.innerText = user.email;
     accountElm.style.backgroundImage = `url(${user.picture})`;
 }
+btnSignOutElm.addEventListener("click", (e)=>{
+    accountElm.querySelector("#account-details").classList.add("d-none");
+    e.stopPropagation();
+    (0, _auth.signOut)((0, _firebaseJs.auth));
+});
 accountElm.addEventListener("click", (e)=>{
     accountElm.querySelector("#account-details").classList.remove("d-none");
     e.stopPropagation();
 });
 document.addEventListener("click", ()=>{
     accountElm.querySelector("#account-details").classList.add("d-none");
+});
+(0, _auth.onAuthStateChanged)((0, _firebaseJs.auth), (loggedUser)=>{
+    if (loggedUser) {
+        user.email = loggedUser.email;
+        user.name = loggedUser.displayName;
+        user.picture = loggedUser.photoURL;
+        finalizedLogin();
+        overlayElm.classList.add("d-none");
+        if (!ws) {
+            ws = new WebSocket(`${API_BASE_URL}/messages`);
+            ws.addEventListener("error", ()=>{
+                alert("Connection failer, try refreshing the application");
+            });
+            ws.addEventListener("message", loadNewChatMessages);
+        }
+    } else {
+        user.email = null;
+        user.name = null;
+        user.picture = null;
+        overlayElm.classList.remove("d-none");
+        if (ws) {
+            ws.close();
+            ws = null;
+        }
+    }
 });
 btnSendElm.addEventListener("click", ()=>{
     const message = txtMsgElm.value.trim();
@@ -625,6 +656,7 @@ btnSendElm.addEventListener("click", ()=>{
         message,
         email: user.email
     };
+    ws.send(JSON.stringify(msgObj));
     addChatMessageRecord(msgObj);
     txtMsgElm.value = "";
     txtMsgElm.focus();
@@ -632,8 +664,14 @@ btnSendElm.addEventListener("click", ()=>{
 function addChatMessageRecord({ message }) {
     const messageElm = document.createElement("div");
     messageElm.classList.add("message");
+    if (email === user.email) messageElm.classList.add("me");
+    else messageElm.classList.add("others");
     outputElm.append(messageElm);
     messageElm.innerText = message;
+}
+function loadNewChatMessages(e) {
+    const msg = JSON.parse(e.data);
+    addChatMessageRecord(msg);
 }
 
 },{"firebase/auth":"13Xm4","./firebase.js":"5VmhM"}],"13Xm4":[function(require,module,exports) {

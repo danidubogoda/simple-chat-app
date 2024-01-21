@@ -39,8 +39,6 @@ public class ChatWSController extends TextWebSocketHandler {
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 
         try {
-
-
             MessageTO messageObj = mapper.readValue(message.getPayload(), MessageTO.class);
 
             Set<ConstraintViolation<MessageTO>> violations = validatorFactoryBean.getValidator().validate(messageObj);

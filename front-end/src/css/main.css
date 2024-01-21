@@ -75,10 +75,20 @@
 
 .message{
     width: fit-content;
-    background-color: rgb(88, 19, 179);
+    background-color: rgb(197, 136, 46);
     color: white;
     padding: 5px 10px;
     margin-bottom: 10px;
     border-radius: 10px;
     position: relative;
+}
+
+.message.me{
+    align-self: flex-end;
+    background-color: rgb(43, 146, 77);
+}
+
+.message.others{
+    align-self: flex-end;
+    background-color: rgb(88, 19, 179);
 }
