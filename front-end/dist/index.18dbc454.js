@@ -591,7 +591,7 @@ const accountElm = document.querySelector("#account");
 const userNameElm = document.querySelector("#user-name");
 const userEmailElm = document.querySelector("#user-email");
 const overlayElm = document.querySelector("#login-overlay");
-const API_BASE_URL;
+const API_BASE_URL = "ws://localhost:8080/api/v3";
 const user = {
     email: null,
     name: null,
@@ -658,10 +658,11 @@ btnSendElm.addEventListener("click", ()=>{
     };
     ws.send(JSON.stringify(msgObj));
     addChatMessageRecord(msgObj);
+    outputElm.scrollTo(0, outputElm.scrollHeight);
     txtMsgElm.value = "";
     txtMsgElm.focus();
 });
-function addChatMessageRecord({ message }) {
+function addChatMessageRecord({ message, email }) {
     const messageElm = document.createElement("div");
     messageElm.classList.add("message");
     if (email === user.email) messageElm.classList.add("me");

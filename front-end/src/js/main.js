@@ -98,12 +98,13 @@ const msgObj = {
 
     ws.send(JSON.stringify(msgObj));
     addChatMessageRecord(msgObj);
+    outputElm.scrollTo(0, outputElm.scrollHeight);
     txtMsgElm.value = "";
     txtMsgElm.focus();
 });
 
 
-function addChatMessageRecord({message}){
+function addChatMessageRecord({message, email}){
     const messageElm = document.createElement('div');
     messageElm.classList.add('message')
     if (email === user.email){

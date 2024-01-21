@@ -58,7 +58,6 @@ public class ChatWSController extends TextWebSocketHandler {
                 session.sendMessage(new TextMessage("Invalid Message"));
             }
 
-
         } catch (JacksonException exp) {
            session.sendMessage(new TextMessage("Invalid JSON"));
         }
